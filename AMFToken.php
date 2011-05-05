@@ -8,10 +8,6 @@ abstract class AMFToken {
 	
 	public function __construct() {
 		
-		if(!isset($_SESSION)){
-			session_start();
-		}
-		
 		if(!isset($_SESSION[$this->_getSessionNamespace()])) {
 			$_SESSION[$this->_getSessionNamespace()] = array(
 				'keys' => array(),
@@ -29,7 +25,7 @@ abstract class AMFToken {
 	 */
 	public function ping($obj) {
 		
-		$data = $this->_verifySignature('Service.ping',$obj);
+		$data = $this->_verifySignature(get_class($this).'.ping',$obj);
 		
 		$return = new StdClass();
 		$return->ping = time();
@@ -121,9 +117,9 @@ abstract class AMFToken {
 			}
 			
 		}
-			
-		//throw new Exception('Bad signature');
-		return $obj->data;
+		
+		throw new Exception('Bad signature');
+		//return $obj->data;
 		
 	}
 	

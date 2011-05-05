@@ -40,8 +40,8 @@ package {
 			resp.signature = _getSignature(command,timestamp);
 			resp.timestamp = timestamp
 			resp.data = param;
-			if(_reencodingKey) resp.key = _reencodingKey;
-			else resp.key = _encodingKey;
+			//if(_reencodingKey) resp.key = _reencodingKey;
+			//else resp.key = _encodingKey;
 			
 			call(command,responder,resp);
 			

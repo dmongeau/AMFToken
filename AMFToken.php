@@ -93,7 +93,10 @@ abstract class AMFToken {
 	 *
 	 */
 	protected function _verifySignature($method,$obj) {
-			
+		
+		if(strpos($method,'::') !== false) $method = str_replace('::','.',$method);
+		else if(strpos($method,'.') === false) $method = get_class($this).'.'.$method;
+		
 		$this->_cleanExpiredKeys();
 		
 		$timestamp = $obj->timestamp;

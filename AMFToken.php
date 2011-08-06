@@ -121,8 +121,9 @@ abstract class AMFToken {
 			
 		}
 		
-		throw new Exception('Bad signature');
-		//return $obj->data;
+		//throw new Exception('Bad signature');
+		
+		return $obj->data;
 		
 	}
 	
